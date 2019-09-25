@@ -22,15 +22,15 @@ _.chunk = function(array = [], size = 1) {
 
     let result = []
 
-    for ( let i = 0; i < Math.ceil(arrayLen / size); i++ ) {
+    for (let i = 0, forLen = Math.ceil(arrayLen / size); i < forLen; i++) {
         let sizeArr = []
 
-        if (array.length <= size) {
-            sizeArr = sizeArr.concat(array)
-        } else {
+        if (array.length > size) {
             sizeArr = array.splice(0, size)
+            result.push(sizeArr)
+        } else {
+            result.push(array)
         }
-        result.push(sizeArr)
     }
 
     return result
