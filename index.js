@@ -55,3 +55,39 @@ _.compact = function(array = []) {
     }
     return result
 }
+/**
+ * array (Array): 被连接的数组。
+ * [values] (...*): 连接的值。
+ * 创建一个新数组，将array与任何数组 或 值连接在一起。
+ * **/
+_.concat = function(array, value) {
+    var length = arguments.length;
+    if (!length) {
+        return [];
+    }
+
+    var args = [],
+        index = length;
+    
+    if (index - 1 === 1) {
+        const argumentsArray = arguments[1]
+        
+        if (Array.isArray(argumentsArray)) {
+            args = argumentsArray
+        } else {
+            args.push(argumentsArray)
+        }
+    } else if (index - 1 > 1) {
+        while (index--) {
+            args[index - 1] = arguments[index];
+        }
+    } else {
+        args = 0
+    }
+
+    for(let i = 0, arrLen = args.length; i < arrLen; i++) {
+        array.push(args[i])
+    }
+
+    return array
+}
