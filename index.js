@@ -91,3 +91,48 @@ _.concat = function(array, value) {
 
     return array
 }
+/**
+ * array (Array): 要查询的数组。
+ * [n=1] (number): 要去除的元素个数。
+ * 创建一个切片数组，去除array前面的n个元素。（n默认值为1。）
+ * **/
+_.drop = function(array, n) {
+    const length = array == null ? 0 : array.length
+
+    if (!length) {
+        return  []
+    } else {
+        return _.slice(array, n < 0 ? 0 : n, length)
+    }
+}
+/**
+* array (Array): 要裁剪数组。
+* [start=0] (number): 开始位置。
+* [end=array.length] (number): 结束位置。
+ * 裁剪数组array，从 start 位置开始到end结束，但不包括 end 本身的位置。
+ * **/
+_.slice = function(array, start, end) {
+    let length = array == null ? 0 : array.length
+    if (!length) {
+        return []
+    }
+    start = start == null ? 0 : start
+    end = end === undefined ? length : end
+
+    if (start < 0) {
+        start = -start > length ? 0 : (length + start)
+    }
+    end = end > length ? length : end
+    if (end < 0) {
+        end += length
+    }
+    length = start > end ? 0 : ((end - start) >>> 0)
+    start >>>= 0
+
+    let index = -1
+    const result = new Array(length)
+    while (++index < length) {
+        result[index] = array[index + start]
+    }
+    return result
+}
