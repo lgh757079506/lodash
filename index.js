@@ -105,6 +105,22 @@ _.drop = function(array, n) {
         return _.slice(array, n < 0 ? 0 : n, length)
     }
 }
+
+/**
+* array (Array): 要裁剪数组。
+* [n=1] (number): 要去除的元素个数。
+ * 创建一个切片数组，去除array尾部的n个元素。（n默认值为1。）返回array剩余切片。
+ * **/
+_.dropRight = function(array, n = 1 ) {
+    const length = array == null ? 0 : array.length
+
+    if (!length) {
+        return  []
+    } else {
+        return _.slice(array, 0, n < 0 ? 0 : n)
+    }
+}
+
 /**
 * array (Array): 要裁剪数组。
 * [start=0] (number): 开始位置。
