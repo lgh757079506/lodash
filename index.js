@@ -152,3 +152,11 @@ _.slice = function(array, start, end) {
     }
     return result
 }
+/**
+* value: 目标值。
+ * 判断是否为Object。
+ * **/
+_.isObject = function(value) {
+    var type = typeof value
+    return value !== null && (type == 'function' || type == 'object')
+}
