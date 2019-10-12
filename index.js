@@ -160,3 +160,36 @@ _.isObject = function(value) {
     var type = typeof value
     return value !== null && (type == 'function' || type == 'object')
 }
+/**
+* value: 目标值。
+ * 如果 value 为一个类对象，那么返回 true，否则返回 false。
+ * **/
+_.isObjectLike = function (value) {
+    return value != null && typeof value == 'object';
+}
+/**
+* value: 目标值。
+ * 转换 value 为一个有限数字。
+ * **/
+_.toFinite = function(value) {
+    const INFINITY = 1 / 0,
+        MAX_INTEGER = 1.7976931348623157e+308
+    if(!value) {
+        return 0
+    }
+    value = _.toNumber(value)
+    if (value === INFINITY || value === -INFINITY) {
+        return value > 0 ? MAX_INTEGER : -1 * MAX_INTEGER
+    }
+    return value === value ? value : 0
+}
+/**
+* value: 目标值。
+ * 转换 value 为一个数字。
+ * **/
+_.toNumber = function(value) {
+
+}
+_.freeGlobal = function() {
+    return glob
+}
