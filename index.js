@@ -190,6 +190,15 @@ _.toFinite = function(value) {
 _.toNumber = function(value) {
 
 }
-_.freeGlobal = function() {
-    return glob
+/**
+* value: 目标值。
+ * 使用toString获取值的类型
+ * **/
+_.getTag = function(value) {
+    const toString = Object.prototype.toString
+
+    if (value == null) {
+        return value === undefined ? '[object Undefined]' : '[object Null]'
+    }
+    return toString.call(value)
 }
