@@ -202,3 +202,12 @@ _.getTag = function(value) {
     }
     return toString.call(value)
 }
+/**
+* value: 要检查的值
+ * 检查 value 是否是原始 Symbol 或者对象。返回布尔值
+ * **/
+_.isSymbol = function(value) {
+    const type = typeof value
+
+    type === 'symbol' || (type === 'object' && value != null && _.getTag(value) == '[object Symbol]')
+}
