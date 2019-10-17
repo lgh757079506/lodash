@@ -188,7 +188,33 @@ _.toFinite = function(value) {
  * 转换 value 为一个数字。
  * **/
 _.toNumber = function(value) {
-
+    const reTrim = /^\s+|\s+$/g
+    const reIsBinary = /^0b[01]+$/i
+    const reIsOctal = /^0o[0-7]+$/i
+    const reIsBadHex = /^[-+]0x[0-9a-f]+$/i
+//     是number return
+// 是symbol return
+// 是object 判断valueof是否是function，将其取值在判断是否是object
+// 判断value是否不为string value赋值
+// 判断进制 返回值
+    if (typeof value === 'number') {
+        return value
+    }
+    if (_.isSymbol(value)) {
+        return NaN
+    }
+    if (_.isObject(value)) {
+        const other = typeof value.valueOf === 'function' ? value.valueOf() : value
+        value = _.isObject(other) ? `${other}` : other
+    }
+    if (typeof value !== 'string') {
+        return value === 0 ? value : +value
+    }
+    value = value.replace(reTrim, '')
+    const isBinary = reIsBinary.test(value)
+    return (isBinary || reIsOctal.test(value))
+        ? parseInt(value.slice(2), isBinary ? 2 : 8)
+        : reIsBadHex.test(value) ? NaN : +value
 }
 /**
 * value: 目标值。
