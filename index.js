@@ -185,6 +185,16 @@ _.toFinite = function(value) {
 }
 /**
 * value: 目标值。
+ * 转换 value 为一个整数。
+ * **/
+_.toInteger = function(value) {
+    const result = _.toFinite(value),
+    remainder = result % 1;
+
+    return result === result ? (remainder ? result - remainder : result) : 0
+}
+/**
+* value: 目标值。
  * 转换 value 为一个数字。
  * **/
 _.toNumber = function(value) {
